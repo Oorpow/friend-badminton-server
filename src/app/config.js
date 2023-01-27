@@ -7,7 +7,16 @@ const dotenv = require('dotenv')
 const PRIVATE_KEY = fs.readFileSync(path.resolve(__dirname, './keys/private.key'))
 const PUBLIC_KEY = fs.readFileSync(path.resolve(__dirname, './keys/public.key'))
 
-dotenv.config()
+// .env文件在服务端需要重新指定文件路径
+const result = dotenv.config({
+	path: path.resolve(__dirname, '../../', '.env')
+})
+
+if (result.error) {
+  throw result.error
+}
+
+console.log(result.parsed)
 
 module.exports = {
 	HTTP_SERVER_PORT,
