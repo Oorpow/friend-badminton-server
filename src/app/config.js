@@ -16,7 +16,7 @@ if (result.error) {
   throw result.error
 }
 
-console.log(result.parsed)
+// console.log(result.parsed)
 
 module.exports = {
 	HTTP_SERVER_PORT,

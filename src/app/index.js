@@ -1,3 +1,4 @@
+const path = require('path')
 const Koa = require('koa')
 const bodyParser = require('koa-bodyparser')
 const cors = require('@koa/cors')
@@ -16,14 +17,14 @@ app.use(bodyParser())
 app.use(cors())
 // 路由注册
 app.useRoutes()
-app.use(serve('.'))
-app.use(serve('/uploads'))
+
+app.use(serve(path.join(__dirname, '../../')))
 
 // 错误处理中间件
 app.on('error', errorHandler)
 
 process.on('uncaughtException', (err) => {
-    console.error('An uncaught exception occurred:', err);
-  });
+	console.error('An uncaught exception occurred:', err)
+})
 
 module.exports = app
