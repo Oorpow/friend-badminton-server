@@ -17,7 +17,6 @@ const app = require('./index')
 
 const server = http.createServer(app.callback())
 
-
 // socket配置项
 const io = new Server(server, {
 	serveClient: false,

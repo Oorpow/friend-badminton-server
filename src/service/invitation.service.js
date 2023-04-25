@@ -291,7 +291,6 @@ class invitationService {
 		try {
 			// 检验是否已经存在一条相似的点赞记录
 			const [exists] = await connection.execute(checkRecordExists, [userId, invitationId])
-			console.log(exists)
 			if (exists.length === 0) {
 				await connection.execute(addStarStatement, [invitationId])
 				await connection.execute(insertStarRecord, [userId, invitationId])
@@ -353,6 +352,7 @@ class invitationService {
 			console.log(error);
 		}
 	}
+
 	async isStarred(userId, invitationId) {
 		const checkRecordExists = `SELECT * FROM likes l WHERE l.user_id = ? AND l.invitation_id = ?`
 		try {
