@@ -6,7 +6,8 @@ class commentService {
 		const statement = `
             SELECT c.id, c.content, c.createAt, c.parent_id, u.id userId, u.name userName, u.avatar
             FROM comment c, user u
-            WHERE c.inv_id = ? AND c.user_id = u.id;
+            WHERE c.inv_id = ? AND c.user_id = u.id
+			ORDER BY c.createAt DESC;
         `
 		const [res] = await connection.execute(statement, [id])
 
@@ -43,6 +44,7 @@ class commentService {
         })
 		return commentList
 	}
+
 	async create(content, invId, parentId, userId) {
 		const statement = `
 			INSERT INTO comment (content, inv_id, parent_id, user_id) VALUES (?, ?, ?, ?)

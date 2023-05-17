@@ -117,6 +117,7 @@ class invitationService {
 			SELECT u.id, u.name, u.avatar, u.description, i.id invitation_id, i.title, i.content, i.img, i.createAt, i.stars
 			FROM user u, invitation i
 			WHERE u.id = i.uid
+			ORDER BY i.createAt DESC
 			LIMIT ?,6
 		`
 		const getTagStatement = `
@@ -254,7 +255,8 @@ class invitationService {
 			FROM user u, invitation i
 			WHERE u.id = i.uid
 			AND i.uid = ?
-			LIMIT ?,6
+			ORDER BY i.createAt DESC
+			LIMIT ?,6;
 		`
 		const getTotalStatement = `
 			SELECT u.id, u.name, u.avatar, i.id invitation_id, i.title, i.content, i.img, i.createAt, i.stars
